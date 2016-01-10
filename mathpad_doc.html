@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+<title>MathPad</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="trystyle.css">
+
+<script type="text/javascript" src="jquery.js"></script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script type="text/javascript"
+  src="MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer>
+</script>
+
+
+
+<script src='js_css/download.js'></script>
+
+
+<script>
+window.onbeforeunload = function(){
+	
+    
+    $('#textareaCode').select();
+    
+    
+    document.execCommand('copy');
+};
+
+
+if (window.addEventListener) {              
+    window.addEventListener("resize", browserResize);
+} else if (window.attachEvent) {                 
+    window.attachEvent("onresize", browserResize);
+}
+var xbeforeResize = window.innerWidth;
+
+function browserResize() {
+    var afterResize = window.innerWidth;
+    if ((xbeforeResize < (970) && afterResize >= (970)) || (xbeforeResize >= (970) && afterResize < (970)) ||
+        (xbeforeResize < (728) && afterResize >= (728)) || (xbeforeResize >= (728) && afterResize < (728)) ||
+        (xbeforeResize < (468) && afterResize >= (468)) ||(xbeforeResize >= (468) && afterResize < (468))) {
+        xbeforeResize = afterResize;
+        googletag.cmd.push(function() {
+            googletag.pubads().refresh([gptAdSlots[0]]);
+        });
+    }
+}
+</script>
+<script type="text/javascript">
+function submitTryit() {
+
+	
+	
+	var text = document.getElementById("textareaCodeDebut").value;
+  	text = text + document.getElementById("textareaCode").value;
+  	text = text + "<!-- FIN DOCUMENT ------------------------------------></body></html>";
+  var ifr = document.createElement("iframe");
+  ifr.setAttribute("frameborder", "0");
+  ifr.setAttribute("id", "iframeResult");  
+  document.getElementById("iframewrapper").innerHTML = "";
+  document.getElementById("iframewrapper").appendChild(ifr);
+  var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+  ifrw.document.open();
+  ifrw.document.write(text);  
+  ifrw.document.close();
+}
+
+
+
+
+
+function insertTag(startTag,endTag,textareadId){
+	
+	
+	
+	var field = document.getElementById(textareadId);
+	
+	var scroll = field.scrollTop;
+	
+	field.focus();
+	
+	
+	
+	var startSelection = field.value.substring(0,field.selectionStart);
+	var currentSelection = field.value.substring(field.selectionStart,field.selectionEnd);
+	var endSelection = field.value.substring(field.selectionEnd);
+	field.value = startSelection + startTag + currentSelection + endTag + endSelection;
+	field.focus();
+	
+	field.setSelectionRange(startSelection.length + startTag.length, startSelection.length + startTag.length + currentSelection.length);
+	
+	field.scrollTop = scroll;
+	
+	
+	
+	}
+
+var boule = true;
+
+
+function zonePaint() {
+	if (boule) {
+		document.getElementById("paint").style.visibility = "visible";
+		}
+	else {document.getElementById("paint").style.visibility = "hidden";
+	}	
+	boule = !boule;
+}
+
+function zoneTabVar() {
+	document.getElementById("tabVar").style.visibility = "visible";
+}
+
+function annuleVar() {
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+function s12() {
+	
+	
+	var textTab = '<table class=\'var\'>\n\t<tr>\n\t\t<td class=\'droite\'>$x$</td>\n\t\t<td class=\'bas\'>$-\\infty$</td>\n\t\t';
+	textTab = textTab + '<td class=\'bas\'></td>\n\t\t<td class=\'bas\'>$0$</td>\n\t\t<td class=\'bas\'></td>\n\t\t';
+	textTab = textTab + '<td class=\'bas\'>$+\\infty$</td>\n\t</tr>\n\t<tr>\n\t\t<td class=\'droite\'>$f(x)$</td>\n\t\t<td class=\'bas\'></td>\n\t\t<td class=\'bas\'>-</td>\n\t\t';
+	textTab = textTab + '<td class=\'zero\'></td>\n\t\t<td class=\'bas\'>+</td>\n\t\t<td class=\'bas\'></td>\n\t</tr>\n</table>';
+	
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+
+function s13() {
+	
+	
+	var textTab = '<table class=\'var\'>\n<tr>\n\t<td class=\'droite\'>$x$</td>\n\t<td class=\'bas\'>$-\\infty$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>$-1$</td>\n\t';
+	textTab = textTab + '<td class=\'bas\'></td>\n\t<td class=\'bas\'>$1$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>$+\\infty$</td>\n</tr>\n<tr>\n\t<td class=\'droite\'>$f(x)$</td>\n\t';
+	textTab = textTab + '<td class=\'bas\'></td>\n\t<td class=\'bas\'>+</td>\n\t<td class=\'zero\'></td>\n\t<td class=\'bas\'>-</td>\n\t<td class=\'zero\'></td>\n\t<td class=\'bas\'>+</td>';
+	textTab = textTab + '\n\t<td class=\'bas\'></td>\n</tr>\n</table>';
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+
+function s33() {
+	
+	
+	var textTab = '<table class=\'var\'>\n<tr>\n\t<td class=\'droite\'>$x$</td>\n\t<td class=\'bas\'>$-\\infty$</td>';
+	textTab = textTab + '\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>$-1$</td>\n\t<td class=\'bas\'></td>';
+	textTab = textTab + '\n\t<td class=\'bas\'>$1$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>$+\\infty$</td>';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class=\'droite\'>$f(x)$</td>\n\t<td class=\'bas\'></td>';
+	textTab = textTab + '\n\t<td class=\'bas\'>+</td>\n\t<td class=\'verticale\'></td>\n\t<td class=\'bas\'>+</td>\n\t<td class=\'zero\'></td>\n\t<td class=\'bas\'>-</td>\n\t<td class=\'bas\'></td>';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class=\'droite\'>$g(x)$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>-</td>\n\t<td class=\'zero\'></td>\n\t';
+	textTab = textTab + '<td class=\'bas\'>+</td>\n\t<td class=\'verticale\'></td>\n\t';
+	textTab = textTab + '<td class=\'bas\'>+</td>\n\t<td class=\'bas\'></td>\n</tr>\n<tr>\n\t<td class=\'droite\'>$h(x)$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>-</td>\n\t';
+	textTab = textTab + '<td class=\'zero\'></td>\n\t<td class=\'bas\'>+</td>\n\t<td class=\'zero\'></td>\n\t<td class=\'bas\'>-</td>\n\t<td class=\'bas\'></td>\n</tr>\n</table>';
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+function v11() {
+	
+	
+	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-5$</td>\n\t<td class="bas"></td>\n\t<td class="bas"></td>';
+	textTab = textTab+ '\n\t<td class="bas"></td>\n\t<td class="bas">$5$</td>\n';
+	textTab = textTab + '</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td class="interdit_sf"></td>\n\t<td></td>\n\t<td></td>\n\t<td>$+\\infty$</td>\n\t<td class="interdit_sf"></td>';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class="droite_seule">$f(x)$</td>\n\t<td class="interdit_sf"></td>\n\t<td></td>\n\t<td class="croissante"></td>\n\t<td></td>\n\t';
+	textTab = textTab + '<td class="interdit_sf"></td>\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td class="interdit"></td>\n\t<td>$-\\infty$</td>\n\t<td></td>';
+	textTab = textTab + '\n\t<td></td>\n\t<td class="interdit"></td>\n</tr>\n</table>';
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+
+
+function v12() {
+	
+	
+	var textTab = '<table class=\'var\'>\n<tr>\n\t<td class=\'droite\'>$x$</td>\n\t<td class=\'bas\'>$-\\infty$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>$0$</td>\n\t<td class=\'bas\'></td>';
+	textTab = textTab + '\n\t<td class=\'bas\'>$+\\infty$</td>\n</tr>\n<tr>\n\t<td class=\'droite_seule\'></td>\n\t<td>$+\\infty$</td>\n\t<td></td>\n\t<td></td>\n\t';
+	textTab = textTab + '<td></td>\n\t<td>$+\\infty$</td>\n</tr>\n<tr>\n\t<td class=\'droite_seule\'>$f(x)$</td>\n\t<td></td>\n\t<td class=\'decroissante\'></td>\n\t<td></td>\n\t';
+	textTab = textTab + '<td class=\'croissante\'></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td class=\'droite_seule\'></td>\n\t<td></td>\n\t<td></td>\n\t<td>8</td>\n\t';
+	textTab = textTab + '<td></td>\n\t<td></td>\n</tr>\n</table>';
+	
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+function v22() {
+	
+	
+	var textTab = '<table class=\'var\'>\n<tr>\n<td class=\'droite\'>$x$</td>\n\t<td class=\'bas\'>$-\\infty$</td>\n\t';
+	textTab = textTab + '<td class=\'bas\'></td>\n\t<td class=\'bas\'>$0$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>$+\\infty$</td>\n';
+	textTab = textTab + '</tr>\n<tr>\n\t<td class=\'droite\'>$f\'(x)$</td>\n\t<td class=\'bas\'></td>\n\t<td class=\'bas\'>-</td>\n\t<td class=\'zero\'></td>\n\t';
+	textTab = textTab + '<td class=\'bas\'>+</td>\n\t<td class=\'bas\'></td>\n</tr>';
+	textTab = textTab + '\n<tr>\n\t<td class=\'droite_seule\'></td>\n\t<td>$+\\infty$</td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t';
+	textTab = textTab + '<td>$+\\infty$</td>\n</tr>\n<tr>\n\t<td class=\'droite_seule\'>$f(x)$</td>\n\t<td></td>\n\t';
+	textTab = textTab + '<td class=\'decroissante\'></td>\n\t<td></td>\n\t<td class=\'croissante\'></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td class=\'droite_seule\'>';
+	textTab = textTab + '</td>\n\t<td>\n\t</td>\n\t<td></td>\n\t';
+	textTab = textTab + '<td>8</td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>';
+	
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+
+function v13() {
+	
+	
+	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-\\infty$</td>\n\t<td class="bas"></td>\n\t<td class="bas">$-1$</td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n\t<td class="bas">$1$</td>\n\t<td class="bas"></td>\n\t<td class="bas">$+\\infty$</td>\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td>4</td>\n\t<td></td>\n\t<td></td>';
+	textTab = textTab + '\n\t<td></td>\n\t<td>10</td>\n\t<td></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td class="droite_seule">$f(x)$</td>\n\t<td></td>\n\t<td class="decroissante"></td>\n\t<td class=""></td>';
+	textTab = textTab + '\n\t<td class="croissante"></td>\n\t<td class=""></td>\n\t<td class="decroissante"></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td class="droite"></td>\n\t<td></td>';
+	textTab = textTab + '\n\t<td></td>\n\t<td>5</td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td>-1</td>\n</tr>\n</table>';
+	
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+
+function v21() {
+	
+	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-5$</td>\n\t<td class="bas"></td>\n\t<td class="bas"></td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n\t<td class="bas">$5$</td>\n</tr>\n<tr>\n\t<td class="droite">$f\'(x)$</td>\n\t<td class="interdit"></td>\n\t<td class="bas"></td>\n\t<td class="bas">+</td>';
+	textTab = textTab + '\n\t<td class="bas"></td>\n\t<td class="interdit"></td>\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td class="interdit_sf"></td>\n\t<td></td>\n\t<td></td>';
+	textTab = textTab + '\n\t<td>$+\\infty$</td>\n\t<td class="interdit_sf"></td>\n</tr>\n<tr>\n\t<td class="droite_seule">$f(x)$</td>\n\t<td class="interdit_sf"></td>\n\t<td></td>';
+	textTab = textTab + '\n\t<td class="croissante"></td>\n\t<td></td>\n\t<td class="interdit_sf"></td>\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td class="interdit"></td>';
+	textTab = textTab + '\n\t<td>$-\\infty$</td>\n\t<td></td>\n\t<td></td>\n\t<td class="interdit"></td>\n</tr>\n</table>';	
+	
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+	
+}
+
+
+function v23() {
+	
+	
+	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-\\infty$</td>\n\t<td class="bas"></td>\n\t<td class="bas">$-1$</td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n\t<td class="bas">$1$</td>\n\t<td class="bas"></td>\n\t<td class="bas">$+\\infty$</td>\n</tr>\n<tr>\n\t<td class="droite">$f\'(x)$</td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n\t<td class="bas">-</td>\n\t<td class="zero"></td>\n\t<td class="bas">+</td>\n\t<td class="zero"></td>\n\t<td class="bas">-</td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n';
+	textTab = textTab + '</tr>\n<tr>\n\t<td class="droite_seule">$f(x)$</td>\n\t';
+	textTab = textTab + '<td></td>\n\t<td class="decroissante"></td>\n\t<td class=""></td>\n\t<td class="croissante"></td>\n\t<td class=""></td>\n\t<td class="decroissante"></td>\n\t<td></td>';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class=""></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>';
+	
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+function v43() {
+	
+	
+	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-\\infty$</td>\n\t<td class="bas"></td>\n\t<td class="bas">$-1$</td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n\t<td class="bas">$1$</td>\n\t<td class="bas"></td>\n\t<td class="bas">$+\\infty$</td>\n</tr>\n<tr>\n\t<td class="droite">$f\'(x)$</td>\n\t<td class="bas"></td>';
+	textTab = textTab + '\n\t<td class="bas">+</td>\n\t<td class="verticale"></td>\n\t<td class="bas">+</td>\n\t<td class="zero"></td>\n\t<td class="bas">-</td>\n\t<td class="bas"></td>\n</tr>\n<tr>';
+	textTab = textTab + '\n\t<td class="droite">$f\'(x)$</td>\n\t<td class="bas"></td>\n\t<td class="bas">-</td>\n\t<td class="zero"></td>\n\t<td class="bas">+</td>\n\t<td class="verticale"></td>';
+	textTab = textTab + '\n\t<td class="bas">+</td>\n\t<td class="bas"></td>\n</tr>\n<tr>\n\t<td class="droite">$f\'(x)$</td>\n\t<td class="bas"></td>\n\t<td class="bas">-</td>';
+	textTab = textTab + '\n\t<td class="zero"></td>\n\t<td class="bas">+</td>\n\t<td class="zero"></td>\n\t<td class="bas">-</td>\n\t<td class="bas"></td>\n</tr>\n<tr>';
+	textTab = textTab + '\n\t<td class="droite_seule"></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td class="droite_seule">$f(x)$</td>';
+	textTab = textTab + '\n\t<td></td>\n\t<td class="decroissante"></td>\n\t<td class=""></td>\n\t<td class="croissante"></td>\n\t<td class=""></td>\n\t<td class="decroissante"></td>\n\t<td></td>';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class=""></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>';
+	
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+var boule4 = true;
+
+function afficheGraphe() {
+	
+	if (boule4) {
+		document.getElementById("graphePlus").style.visibility = "visible";
+		}
+	else {document.getElementById("graphePlus").style.visibility = "hidden";
+	}	
+	boule4 = !boule4;
+}
+
+
+
+
+function graphe() {
+	
+	var k = Math.round( 10000*Math.random() );
+	
+	var textTab = '<form style="width:100%;padding:10px;text-align:left;">';
+	textTab = textTab + '\n fonction <input type="text" id="input" value="" size="2">';
+	textTab = textTab + '\n x min <input type="text" id="xmin" value="-8" size="1">';
+	textTab = textTab + '\n x max <input type="text" id="xmax" value="8" size="1">';
+	textTab = textTab + '\n y min <input type="text" id="ymin" value="-5" size="1">';
+	textTab = textTab + '\n y max <input type="text" id="ymax" value="5" size="1">';
+	textTab = textTab + '\n<input type="button" value="Tracer" onClick="plotter()">';
+	textTab = textTab + '\n<input type="button" value="Effacer" onClick="clearAll()">';;
+	textTab = textTab + '\n</form>';
+
+	textTab = textTab + '\n<div id=\'jxgboxpl'+ k +'\' class=\'jxgbox\' style=\'width:600px; height:400px;margin:auto;margin-top:20px;margin-bottom:40px;\'></div>\n<script type=\'text/javascript\'>';
+	textTab = textTab + '\n var board = JXG.JSXGraph.initBoard(\'jxgboxpl'+k+'\', {boundingbox:[-8,5,8,-5], axis:true,showCopyright:false});';
+	textTab = textTab + '\n var f, curve; ';
+
+	textTab = textTab + '\nfunction plotter() {';
+		textTab = textTab + '\n\t var xmin = document.getElementById(\'xmin\').value;';
+		textTab = textTab + '\n\t var xmax = document.getElementById(\'xmax\').value;';
+		textTab = textTab + '\n\t var ymin = document.getElementById(\'ymin\').value;';
+		textTab = textTab + '\n\t var ymax = document.getElementById(\'ymax\').value;';
+  		textTab = textTab + '\n\t var txtraw = document.getElementById(\'input\').value;';
+  		textTab = textTab + '\n\t board.setBoundingBox([xmin, ymax, xmax, ymin]);';
+  		textTab = textTab + '\n\t f = board.jc.snippet(txtraw, true, \'x\', true);';
+  		textTab = textTab + '\n\t curve = board.create(\'functiongraph\',[f,';
+               textTab = textTab + '\n\t\t function(){ ';
+                  textTab = textTab + '\n\t\t var c = new JXG.Coords(JXG.COORDS_BY_SCREEN,[0,0],board);';
+                  textTab = textTab + '\n\t\t return c.usrCoords[1];';
+                textTab = textTab + '\n\t\t},';
+                textTab = textTab + '\n\t\t function(){ ';
+                  textTab = textTab + '\n\t\t var c = new JXG.Coords(JXG.COORDS_BY_SCREEN,[board.canvasWidth,0],board);';
+                  textTab = textTab + '\n\t\t return c.usrCoords[1];';
+                textTab = textTab + '\n\t\t}';
+              textTab = textTab + '\n\t\t],{name:txtraw, withLabel:true});';
+  		textTab = textTab + '\n\t var q = board.create(\'glider\', [2, 1, curve], {withLabel:false});';
+		textTab = textTab + '\n\t}';
+
+	textTab = textTab + '\n function clearAll() {';
+    	textTab = textTab + '\n\t JXG.JSXGraph.freeBoard(board);';
+    	textTab = textTab + '\n\t board = JXG.JSXGraph.initBoard(\'jxgboxpl\', {boundingbox:[-5,8,8,-5], axis:true});';
+   	 textTab = textTab + '\n\t f = null;';
+    	textTab = textTab + '\n\t curve = null;';
+		textTab = textTab + '\n\t}';
+	
+textTab = textTab + '\n</script';
+
+	
+	
+	insertTag(textTab,'>','textareaCode');
+	afficheGraphe();
+}
+
+function simpleGraphe() {
+	
+	var k = Math.round( 10000*Math.random() );
+	var textTab = '<div id=\'box'+ k +'\' class=\'jxgbox\' style=\'width:600px; height:400px;margin:auto;margin-top:20px;margin-bottom:40px;\'></div>\n';
+	textTab = textTab + '\n';
+	textTab = textTab + '<script type="text/javascript">\n';
+	textTab = textTab + '\t board = JXG.JSXGraph.initBoard(\'box'+k+'\',{axis:true,boundingbox:[-8,5,8,-5], showCopyright:false});\n';
+	textTab = textTab + '\t <!--boundingbox:[xmin,ymax,xmax,-ymin]-->\n';
+	textTab = textTab + '\t board.create(\'functiongraph\', [function(x){return Math.sin(x);},-Math.PI,2*Math.PI],{strokeColor:\'red\'});\n';
+	
+	textTab = textTab + '</script';
+	
+	insertTag(textTab,'>','textareaCode');
+	afficheGraphe();
+}
+
+
+
+
+function va_en_bas() {
+	var obj = document.getElementById("textareaCode");
+	obj.scrollTop = obj.scrollHeight;
+}
+
+
+var boule2 = true;
+
+function plusMaths() {
+
+
+	if (boule2) {
+		document.getElementById("mathsPlus").style.visibility = "visible";
+		}
+	else {document.getElementById("mathsPlus").style.visibility = "hidden";
+	}	
+	boule2 = !boule2;
+}
+	
+var boule3 = true;
+
+function zoneEdit() {
+
+
+	if (boule3) {
+		
+		$( ".iframecontainer" ).css( "width", "100%" );
+		$("#boutonNoir").css("left","0%");
+		
+		}
+	else {
+
+		$( ".iframecontainer" ).css( "width", "50%" );
+		$("#boutonNoir").css("left","50%");
+		
+	}	
+	boule3 = !boule3;
+}
+
+
+function save() {
+
+
+	var contenu = $("#textareaCodeDebut").val();
+	contenu = contenu + $("#textareaCode").val();
+	contenu = contenu + "<!-- FIN DOCUMENT ------------------------------------></body></html>";
+	
+	var nom_de_fichier = $("#html-filename").val()+".html";
+	download(new Blob([contenu]), nom_de_fichier, "text/html");
+	
+}
+
+</script>
+<style>
+
+</style>
+</head>
+<body onload="va_en_bas()">
+
+
+<div class="container">
+
+
+<!-- Début droite -->
+  <div class="textareacontainer">
+    <div class="textarea">
+      <div style="overflow:auto;">
+        <div class="headerText">
+        
+        
+        
+        </div>
+        
+        <table>
+        	<tr>
+        
+       		  <button title="Pour écrire en rouge" class="boutonR" type="button" onclick="insertTag('<div style=\'color:#ff0000;\'>\n','\n</div>','textareaCode')">&nbsp;&nbsp;&nbsp;</button>
+	        	  <button title="Pour écrire en vert" class="boutonV" type="button" onclick="insertTag('<div style=\'color:#31B404;\'>\n','\n</div>','textareaCode')">&nbsp;&nbsp;&nbsp;</button>
+		        <button title="Pour écrire en bleu" class="boutonB" type="button" onclick="insertTag('<div style=\'color:#2E2EFE;\'>\n','\n</div>','textareaCode')">&nbsp;&nbsp;&nbsp;</button>
+      		  <button title="Souligner" class="boutonUnderline" type="button" onclick="insertTag('<span style=\'text-decoration:underline;\'>\n','\n</span>','textareaCode')">S</button>
+		        <button title="Gras" class="boutonGras" type="button" onclick="insertTag('<span style=\'font-weight: bold;\'>\n','\n</span>','textareaCode')">G</button>
+   		     <button title="Italique" class="boutonIt" type="button" onclick="insertTag('<span style=\'font-style:italic;\'>\n','\n</span>','textareaCode')">I</button>
+		        <button title="Centrer" class="boutonBlanc" type="button" onclick="insertTag('<div style=\'text-align:center;width:100%;\'>\n','\n</div>','textareaCode')">C</button>
+        	     <button title="Sauter une ligne" class="boutonBlanc" type="button" onclick="insertTag('<br />\n','','textareaCode')">&#8626;</button>
+		        <button title="Encadrer en rouge" class="boutonBlancRouge" type="button" onclick="insertTag('<span style=\'border:solid 3px red;border-radius:8px;padding:20 5 20 5;\'>\n','\n</span>','textareaCode')">&#9744;</button>
+		        <button title="Espace" class="boutonBlanc" type="button" onclick="insertTag('&nbsp;','','textareaCode')"><div style="transform: rotate(-90deg);">[</div></button>
+		        <button title="Dollars pour LaTeX" class="boutonMaths" type="button" onclick="insertTag('$','$','textareaCode')">$$</button>
+		        <button title="Fraction" class="boutonMaths" type="button" onclick="insertTag('\\dfrac{}{}','','textareaCode')">a/b</button>
+		        <button title="Limite" class="boutonMaths" type="button" onclick="insertTag('\\lim_{x\\rightarrow}','','textareaCode')">lim</button>
+        		  <button title="Sigma" class="boutonMaths" type="button" onclick="insertTag('\\sum_{}^{}','','textareaCode')">sum</button>
+		        <button title="\displaystyle{}" class="boutonMaths" type="button" onclick="insertTag('\\displaystyle{','}','textareaCode')">ds</button>
+		        <button title="Array" class="boutonMaths" type="button" onclick="insertTag('\\begin{array}{rcl}\n\n','\\end{array}','textareaCode')">&#9635;</button>
+		        <button title="Intégrale" class="boutonMaths" type="button" onclick="insertTag('\\int_{}^{}','','textareaCode')">&#8747;</button>
+		        <button title="Plus de caractères mathématiques" class="boutonMaths" type="button" onclick="plusMaths()">...</button>
+		        <button title="Afficher un tableau" class="boutonBlanc" type="button" onclick="insertTag('<table class=\'tableau\'>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>','','textareaCode')">&#9638; </button>
+        		  <button title="Tracer de courbe" class="boutonBlanc" type="button" onclick="afficheGraphe();"><img src="img/courbe.png"  style="height:15px;width:18px;"/></button>
+		        <button title="Tableaux de variations" class="boutonBlanc" type="button" onclick="zoneTabVar();">&#8599;&#8600;</button>
+        			<!--
+        			<button title="Afficher une image" class="boutonBlanc" type="button" onclick="insertTag('<img src=\'img_save/.png\' style=\'\'/>','','textareaCode')"><img src="img/cadre.png"  style="height:14px;width:18px;"/></button>
+        			<button title="Dessiner" class="boutonJaune" type="button" onclick="zonePaint();">&#10000;</button>
+        			-->
+        	</tr>
+        	<tr>
+        
+        		<button title="Exemple" class="boutonRose" type="button" onclick="insertTag('<div class=\'exemple\'>\n','\n</div>','textareaCode')">Exe</button>
+        		<button title="Exercice" class="boutonRose" type="button" onclick="insertTag('<div class=\'exercice\'>\n','\n</div>','textareaCode')">Exo</button>
+        		<button title="Propriété" class="boutonRose" type="button" onclick="insertTag('<div class=\'prop\'>\n','\n</div>','textareaCode')">Prop</button>
+        		<button title="Définition" class="boutonRose" type="button" onclick="insertTag('<div class=\'def\'>\n','\n</div>','textareaCode')">Def</button>
+        		<button title="Remarque" class="boutonRose" type="button" onclick="insertTag('<div class=\'rem\'>\n','\n</div>','textareaCode')">Rem</button>
+        		<button title="Paragraphe" class="boutonRose" type="button" onclick="insertTag('<div class=\'paragraphe\'>\n','\n</div>','textareaCode')">Para</button>
+        		<button title="Paragraphe" class="boutonV" type="button" onclick="insertTag('<span class=\'pause\'>','</span>','textareaCode')">Pause</button>
+        		
+        		
+        		<input type="text" class="filename" id="html-filename" placeholder="Nom de fichier" size="6"/></label>
+        		<button title="Sauvegarder" class="boutonBlanc" onclick="save()">Save</button>
+        		
+        
+        		<button class="seeResult" type="button" onclick="submitTryit()">Afficher &raquo;</button>
+        	</tr>
+        </table>
+        <button title="Masquer la zone d'édition" id="boutonNoir" onclick="zoneEdit();">&#8646;</button>
+      </div>
+      <div class="textareawrapper">
+      
+<textarea autocomplete="off" class="code_input" id="textareaCodeDebut" wrap="logical" spellcheck="false" style="display:none;">
+
+<html lang="fr-FR" moznomarginboxes mozdisallowselectionprint>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link rel="stylesheet" type="text/css" href="http://sarmate.free.fr/mathpad_doc/js_css/jsxgraph.css" />
+<script type="text/javascript" src="http://sarmate.free.fr/mathpad_doc/js_css/jsxgraphcore.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript">
+function va_en_bas() {
+	var obj = document.body;
+	obj.scrollTop = obj.scrollHeight;
+}
+$(document).ready(
+function(){
+$(".exercice").each(function(i){
+j=i+1;
+$(this).css("padding","2px");
+$(this).css("background-color","#f0f0f0");
+$(this).prepend("<span style='font-weight:bold;'>Exercice " + j+"</span>");});
+$(".exemple").each(function(i){
+j=i+1;
+$(this).css("padding","2px");
+$(this).css("background-color","#f0f0f0");
+$(this).prepend("<span style='font-weight:bold;'>Exemple " + j+"</span>");});
+$(".def").each(function(i){
+j=i+1;           
+$(this).css("border","solid 1px black");
+$(this).css("background-color","#f0f0f0");
+$(this).css("padding","5px");
+$(this).prepend("<span style='font-weight:bold;'>Définition " + j+"</span>");});
+$(".prop").each(function(i){
+j=i+1;
+$(this).css("background-color","#f0f0f0");           
+$(this).css("border","solid 1px black");
+$(this).css("padding","5px");
+$(this).prepend("<span style='font-weight:bold;'>Propriété " + j+"</span>");});
+$(".theo").each(function(i){
+j=i+1;
+$(this).css("background-color","#f0f0f0");           
+$(this).css("border","solid 1px black");
+$(this).css("padding","5px");
+$(this).prepend("<span style='font-weight:bold;'>Théorème " + j+"</span>");});
+$(".rem").each(function(i){
+j=i+1;
+$(this).css("background-color","#f0f0f0");
+$(this).prepend("<span style='font-weight:bold;'>Remarque " + j+"</span>");});
+$(".paragraphe").each(function(i){
+j=i+1;
+$(this).css("background-color","#c0c0c0");
+$(this).css("color","#fff");
+$(this).css("padding","3px");
+$(this).css("border-radius","10px");
+$(this).prepend("<span style='font-weight:bold;color:#fff;background-color:#c0c0c0;border-radius:10px;padding:3px;'>"+j+" - </span>");});
+$(".pause").each(function(i){
+var cont = $(this).html();
+$(this).html('');
+$(this).prepend("<div id='trou_"+i+"' class='trou'>"+ cont +"</div>");
+});
+}
+);
+
+var trou = 0;
+function retourne() {
+	if (trou>0) {trou--;	}
+	var nom = "trou_"+trou;
+	document.getElementById(nom).style.visibility = "hidden";	
+	}
+function avance() {
+	var nom = "trou_"+trou;
+	document.getElementById(nom).style.visibility = "visible";
+	trou++;
+	}
+</script>
+<style type="text/css">
+@page{
+	size: auto;
+	margin-left: 5mm;
+	margin-right: 5mm;
+	margin-top: 5mm;
+	margin-bottom: 5mm;
+	content: counter(page);
+	}
+@media print { .noprt {display:none} .pause{display:none} }
+body{}
+.tableau{border:solid 1px black;border-collapse: collapse;}
+.tableau td{border:solid 1px black;text-align: center;padding: 10px;}
+.var{border:solid 1px black;border-collapse: collapse;text-align: center;}.droite{border-right: solid 1px black;border-bottom: solid 1px black;padding: 10px;text-align: center;}
+.droite_seule{border-right: solid 1px black;padding: 10px;text-align: center;}
+.bas{border-bottom: solid 1px black;padding: 10px;text-align: center;}
+.zero{border-bottom: solid 1px black;padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/zero.png");background-repeat: no-repeat;background-size: contain;background-position: center center;	width: 30px;}
+.verticale{border-bottom: solid 1px black;padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/vertical.png");background-repeat: no-repeat;background-size: contain;background-position: center center;	width: 30px;}
+.interdit{border-bottom: solid 1px black;padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/interdit.png");background-repeat: no-repeat;background-size: 30px 65px;background-position: center center;width: 30px;}
+.interdit_sf{padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/interdit.png");background-repeat: no-repeat;background-size: 30px 65px;background-position: center center;width: 30px;}
+.croissante{padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/croissante.png");background-repeat: no-repeat;background-size: contain;background-position: center center;width: 30px;}
+.decroissante{padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/decroissante.png");background-repeat: no-repeat;background-size: contain;background-position: center center;width: 30px;}
+.trou{visibility: hidden;display: inline-block;}
+</style>  
+</head>
+<body onload="va_en_bas();">
+<p style="position:fixed;top:0px;right:0px;z-index:200;" class="noprt">
+<button onclick="javascript:window.print()" style="text-decoration:none;">&#128438;</button>
+</p>
+<div style="z-index:0.1;position:fixed;bottom:0px;left:0px;width:50%;height:200px;" onclick="retourne();">
+</div>
+<div style="z-index:0.1;position:fixed;bottom:0px;width:50%;right:0px;height:200px;" onclick="avance();">
+</div>
+<!-- DEBUT DOCUMENT ------------------------------------>
+
+
+</textarea>      
+      
+      
+<textarea autocomplete="off" class="code_input" id="textareaCode" wrap="logical" spellcheck="false">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</textarea>
+
+          <form autocomplete="off" style="margin:0px;display:none;">
+            <input type="hidden" name="code" id="code" />
+            <input type="hidden" id="bt" name="bt" />
+          </form>
+       </div>
+    </div>
+  </div>
+  
+<!-- fin droite -->
+
+<!-- Début gauche --> 
+  
+  
+  <div class="iframecontainer">
+    <div class="iframe">
+      <div style="overflow:auto;">
+        <div class="headerText"></div>
+      </div>
+      <div id="iframewrapper" class="iframewrapper">
+        
+      </div>
+    </div>
+  </div>
+     
+
+<!-- Fin gauche -->     
+     
+
+</div>
+<script>submitTryit()</script>
+
+
+<div id="paint">
+	<iframe src="MonMiniPaint.html" style="width:535px;height:710px;border:0px;resize: both;"></iframe>
+	<div id="closePaint" onclick="zonePaint();">&times;</div>
+</div>
+
+
+
+<div id="tabVar">
+
+<table style="text-align:center;margin:auto;margin-bottom:50px;">
+<tr>
+<td>
+<button class="boutonBlanc" onclick="s12();">Signe 1x2</button>
+</td>
+<td>
+<button class="boutonBlanc" onclick="s13();">Signe 1x3</button>
+</td>
+<td>
+<button class="boutonBlanc" onclick="s33();">Signe 3x3</button>
+</td>
+</tr>
+<tr>
+<td>
+<button class="boutonBlanc" onclick="v11();">Variation 1x1</button>
+</td>
+<td>
+<button class="boutonBlanc" onclick="v12();">Variation 1x2</button>
+</td>
+<td>
+<button class="boutonBlanc" onclick="v13();">Variation 1x3</button>
+</td>
+</tr>
+<tr>
+<td>
+<button class="boutonBlanc" onclick="v21();">Variation 2x1</button>
+</td>
+<td>
+<button class="boutonBlanc" onclick="v22();">Variation 2x2</button>
+</td>
+<td>
+<button class="boutonBlanc" onclick="v23();">Variation 2x3</button>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<button class="boutonBlanc" onclick="v43();">Variation 4x3</button>
+</td>
+<td></td>
+</tr>
+
+</table>
+
+<button class="boutonBlanc" onclick="annuleVar();">Annuler</button>
+</div>
+
+
+<!-- Symbols LaTeX ------------------------------------------------------>
+<div id="mathsPlus">
+	<table style="border-collapse:collapse;border:solid 1px black;margin:auto;">
+		<tr>
+		
+			<td class="cadre" onclick="insertTag('\\in','','textareaCode')">&isin; \in</td>	
+			<td class="cadre" onclick="insertTag('\\notin','','textareaCode')">&notin; \notin</td>
+			<td class="cadre" onclick="insertTag('\\cap','','textareaCode')">&cap; \cap</td>
+			<td class="cadre" onclick="insertTag('\\cup','','textareaCode')">&cup; \cup</td>
+			<td class="cadre" onclick="insertTag('\\oslash','','textareaCode')">&empty; \oslash</td>
+			<td class="cadre" onclick="insertTag('\\subset','','textareaCode')">&sub; \subset</td>
+			<td class="cadre" onclick="insertTag('\\supset','','textareaCode')">&sup; \supset</td>
+			<td class="cadre" onclick="insertTag('\\overline{','}','textareaCode')"><span style="border-top:1px solid black;">A</span> \overline{}</td>
+		</tr>
+		
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\pm','','textareaCode')">&#8723; \pm</td>
+			<td class="cadre" onclick="insertTag('\\div','','textareaCode')">&divide; \div</td>
+			<td class="cadre" onclick="insertTag('\\times','','textareaCode')">&times; \times</td>
+			<td class="cadre" onclick="insertTag('\\neq','','textareaCode')">&ne; \neq</td>
+			<td class="cadre" onclick="insertTag('\\approx','','textareaCode')">&asymp; \approx</td>
+			<td class="cadre" onclick="insertTag('\\simeq','','textareaCode')">&#8771; \simeq</td>
+			<td class="cadre" onclick="insertTag('\\sim','','textareaCode')">&sim; \sim</td>
+			<td class="cadre" onclick="insertTag('\\equiv','','textareaCode')">&equiv; \equiv</td>
+		</tr>
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\exists','','textareaCode')">&exist; \exists</td>
+			<td class="cadre" onclick="insertTag('\\forall','','textareaCode')">&forall; \forall</td>
+			<td class="cadre" onclick="insertTag('\\leq','','textareaCode')">&le; \leq</td>
+			<td class="cadre" onclick="insertTag('\\geq','','textareaCode')">&ge; \geq</td>
+			<td class="cadre" onclick="insertTag('\\infty','','textareaCode')">&infin; \infty</td>
+			<td class="cadre" onclick="insertTag('\\bullet','','textareaCode')">&bullet; \bullet</td>
+			<td class="cadre" onclick="insertTag('\\star','','textareaCode')">&star; \star</td>
+			<td class="cadre" onclick="insertTag('\\setminus','','textareaCode')">\ \setminus</td>
+		</tr>
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\widehat{','}','textareaCode')">&Acirc; \widehat{}</td>
+			<td class="cadre" onclick="insertTag('\\vec{','}','textareaCode')">&#8407; \vec{}</td>
+			<td class="cadre" onclick="insertTag('\\dot{','}','textareaCode')">&#550; \dot{}</td>
+			
+			<td class="cadre" onclick="insertTag('\\neg','','textareaCode')">&rceil; \neg</td>
+			<td class="cadre" onclick="insertTag('\\ldots','','textareaCode')">... \ldots</td>
+			<td class="cadre" onclick="insertTag('\\cdots','','textareaCode')">&#8943; \cdots</td>
+			<td class="cadre" onclick="insertTag('\\vdots','','textareaCode')">&#8942; \vdots</td>
+			<td class="cadre" onclick="insertTag('\\ddots','','textareaCode')">&#8945; \ddots</td>
+		</tr>
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\partial','','textareaCode')">&part; \partial</td>
+			<td class="cadre" onclick="insertTag('\\prime','','textareaCode')">&rsquo; \prime</td>
+			<td class="cadre" onclick="insertTag('\\leftarrow','','textareaCode')">&#8594;  \leftarrow</td>
+			<td class="cadre" onclick="insertTag('\\rightarrow','','textareaCode')">&#8592;  \rightarrow</td>
+			<td class="cadre" onclick="insertTag('\\Leftarrow','','textareaCode')">&#8658; \Leftarrow</td>
+			<td class="cadre" onclick="insertTag('\\Rightarrow','','textareaCode')">&#8656;  \Rightarrow</td>
+			<td class="cadre" onclick="insertTag('\\Longleftrightarrow','','textareaCode')">&hArr; <span style="font-size:x-small;">\Longleftrightarrow</span></td>
+			<td class="cadre" onclick="insertTag('\\mapsto','','textareaCode')">&#8614;  \mapsto</td>
+		</tr>
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\alpha','','textareaCode')">&alpha; \alpha</td>
+			<td class="cadre" onclick="insertTag('\\beta','','textareaCode')">&beta; \beta</td>
+			<td class="cadre" onclick="insertTag('\\gamma','','textareaCode')">&gamma; \gamma</td>
+			<td class="cadre" onclick="insertTag('\\delta','','textareaCode')">&delta; \delta</td>
+			<td class="cadre" onclick="insertTag('\\epsilon','','textareaCode')">&epsilon; \epsilon</td>
+			<td class="cadre" onclick="insertTag('\\zeta','','textareaCode')">&zeta; \zeta</td>
+			<td class="cadre" onclick="insertTag('\\eta','','textareaCode')">&eta; \eta</td>
+			<td class="cadre" onclick="insertTag('\\theta','','textareaCode')">&theta; \theta</td>
+		</tr>
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\lambda','','textareaCode')">&lambda; \lambda</td>
+			<td class="cadre" onclick="insertTag('\\mu','','textareaCode')">&mu; \mu</td>
+			<td class="cadre" onclick="insertTag('\\nu','','textareaCode')">&nu; \nu</td>
+			<td class="cadre" onclick="insertTag('\\xi','','textareaCode')">&xi; \xi</td>
+			<td class="cadre" onclick="insertTag('\\pi','','textareaCode')">&pi; \pi</td>
+			<td class="cadre" onclick="insertTag('\\rho','','textareaCode')">&rho; \rho</td>
+			<td class="cadre" onclick="insertTag('\\sigma','','textareaCode')">&sigma; \sigma</td>
+			<td class="cadre" onclick="insertTag('\\tau','','textareaCode')">&tau; \tau</td>
+		</tr>
+		<tr>
+			<td class="cadre" onclick="insertTag('\\varphi','','textareaCode')">&phi; \varphi</td>
+			<td class="cadre" onclick="insertTag('\\chi','','textareaCode')">&chi; \chi</td>
+			<td class="cadre" onclick="insertTag('\\psi','','textareaCode')">&psi; \psi</td>
+			<td class="cadre" onclick="insertTag('\\omega','','textareaCode')">&omega; \omega</td>
+			<td class="cadre" onclick="insertTag('\\Gamma','','textareaCode')">&Gamma; \Gamma</td>
+			<td class="cadre" onclick="insertTag('\\Delta','','textareaCode')">&Delta; \Delta</td>
+			<td class="cadre" onclick="insertTag('\\theta','','textareaCode')">&theta; \theta</td>
+			<td class="cadre" onclick="insertTag('\\nabla','','textareaCode')">&nabla; \nabla</td>
+		</tr>
+		<tr>
+			
+			<td class="cadre" onclick="insertTag('\\Phi','','textareaCode')">&Phi; \Phi</td>
+			<td class="cadre" onclick="insertTag('\\Psi','','textareaCode')">&Psi; \Psi</td>
+			<td class="cadre" onclick="insertTag('\\Pi','','textareaCode')">&Pi; \Pi</td>
+			<td class="cadre" onclick="insertTag('\\Sigma','','textareaCode')">&Sigma; \Sigma</td>
+			<td class="cadre" onclick="insertTag('\\aleph','','textareaCode')">&aleph; \aleph</td>
+			<td class="cadre" onclick="insertTag('\','','textareaCode')"></td>
+			<td class="cadre" onclick="insertTag('\','','textareaCode')"></td>
+			<td class="cadre" onclick="insertTag('\','','textareaCode')"></td>
+		</tr>
+		
+		<tr>
+			<td class="cadre" onclick="insertTag('\\mathcal{','}','textareaCode')">\mathcal{}</td>
+			<td class="cadre" onclick="insertTag('\\mathscr{','}','textareaCode')">\mathscr{}</td>
+			<td class="cadre" onclick="insertTag('\\mathbb{R}','','textareaCode')">&#x211d; \mathbb{R}</td>
+			<td class="cadre" onclick="insertTag('\\mathbb{Q}','','textareaCode')">&#x211a; \mathbb{Q}</td>
+			<td class="cadre" onclick="insertTag('\\mathbb{Z}','','textareaCode')">&#8484; \mathbb{Z}</td>
+			<td class="cadre" onclick="insertTag('\\mathbb{N}','','textareaCode')">&#x2115; \mathbb{N}</td>
+			<td class="cadre" onclick="insertTag('\\wedge','','textareaCode')">&and; \wedge</td>
+			<td class="cadre" onclick="insertTag('\\vee','','textareaCode')">&or; \vee</td>
+			
+		</tr>
+	</table>
+	
+	<br />
+	<button onclick="plusMaths()" class="boutonBlanc">Fermer</button>
+	
+</div>
+<!-- Fin Symbols LaTeX ---------------------------------------------------->
+
+
+<!-- Début Graphe de fonctions -->
+
+<div id="graphePlus">
+
+<button onclick="graphe()" class="boutonBlanc">Grapheur</button>
+
+<button onclick="simpleGraphe()" class="boutonBlanc">Graphique simple</button>
+
+
+
+<br /><br /><br />
+
+
+	<button onclick="afficheGraphe()" class="boutonBlanc">Fermer</button>
+</div>
+<!-- Fin Graphe de fonctions -->
+
+<!-- Presse papier -->
+
+<textarea id="temptext" style="position:fixed;bottom :0px;left:0px;opacity:0;"></textarea>
+
+<!-- fin de presse papier-->
+
+
+<!-- Début Save -->
+
+
+<!-- Fin de Save -->
+
+
+<!-- TODO LIST
+
+Intégrer donwload.js au code de la page
+
+Bouton vers animations JSXGraph
+
+
+Manuel...
+
+Numérotation de questions
+
+Tableau de variation
+
+-->
+
+
+
+</body>
+</html>
