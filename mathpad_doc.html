@@ -8,15 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="trystyle.css">
 
-<script type="text/javascript" src="jquery.js"></script>
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
 
+
 <script type="text/javascript"
-  src="MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer>
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -25,14 +25,7 @@
 
 
 <script>
-window.onbeforeunload = function(){
-	
-    
-    $('#textareaCode').select();
-    
-    
-    document.execCommand('copy');
-};
+
 
 
 if (window.addEventListener) {              
@@ -57,20 +50,18 @@ function browserResize() {
 <script type="text/javascript">
 function submitTryit() {
 
-	
-	
 	var text = document.getElementById("textareaCodeDebut").value;
-  	text = text + document.getElementById("textareaCode").value;
-  	text = text + "<!-- FIN DOCUMENT ------------------------------------></body></html>";
-  var ifr = document.createElement("iframe");
-  ifr.setAttribute("frameborder", "0");
-  ifr.setAttribute("id", "iframeResult");  
-  document.getElementById("iframewrapper").innerHTML = "";
-  document.getElementById("iframewrapper").appendChild(ifr);
-  var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-  ifrw.document.open();
-  ifrw.document.write(text);  
-  ifrw.document.close();
+	text = text + document.getElementById("textareaCode").value;
+	text = text + "<!-- FIN DOCUMENT ------------------------------------></body></html>";
+	var ifr = document.createElement("iframe");
+  	ifr.setAttribute("frameborder", "0");
+  	ifr.setAttribute("id", "iframeResult");  
+  	document.getElementById("iframewrapper").innerHTML = "";
+	document.getElementById("iframewrapper").appendChild(ifr);
+	var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+	ifrw.document.open();
+ 	 ifrw.document.write(text);  
+  	ifrw.document.close();
 }
 
 
@@ -79,28 +70,16 @@ function submitTryit() {
 
 function insertTag(startTag,endTag,textareadId){
 	
-	
-	
 	var field = document.getElementById(textareadId);
-	
 	var scroll = field.scrollTop;
-	
 	field.focus();
-	
-	
-	
 	var startSelection = field.value.substring(0,field.selectionStart);
 	var currentSelection = field.value.substring(field.selectionStart,field.selectionEnd);
 	var endSelection = field.value.substring(field.selectionEnd);
 	field.value = startSelection + startTag + currentSelection + endTag + endSelection;
 	field.focus();
-	
 	field.setSelectionRange(startSelection.length + startTag.length, startSelection.length + startTag.length + currentSelection.length);
-	
 	field.scrollTop = scroll;
-	
-	
-	
 	}
 
 var boule = true;
@@ -411,7 +390,6 @@ var boule2 = true;
 
 function plusMaths() {
 
-
 	if (boule2) {
 		document.getElementById("mathsPlus").style.visibility = "visible";
 		}
@@ -424,26 +402,20 @@ var boule3 = true;
 
 function zoneEdit() {
 
-
-	if (boule3) {
-		
+	if (boule3) {	
 		$( ".iframecontainer" ).css( "width", "100%" );
-		$("#boutonNoir").css("left","0%");
-		
+		$("#boutonNoir").css("left","0%");		
 		}
 	else {
-
 		$( ".iframecontainer" ).css( "width", "50%" );
-		$("#boutonNoir").css("left","50%");
-		
-	}	
+		$("#boutonNoir").css("left","50%");	
+		}	
 	boule3 = !boule3;
 }
 
 
 function save() {
-
-
+	
 	var contenu = $("#textareaCodeDebut").val();
 	contenu = contenu + $("#textareaCode").val();
 	contenu = contenu + "<!-- FIN DOCUMENT ------------------------------------></body></html>";
@@ -511,8 +483,10 @@ function save() {
         		<button title="Définition" class="boutonRose" type="button" onclick="insertTag('<div class=\'def\'>\n','\n</div>','textareaCode')">Def</button>
         		<button title="Remarque" class="boutonRose" type="button" onclick="insertTag('<div class=\'rem\'>\n','\n</div>','textareaCode')">Rem</button>
         		<button title="Paragraphe" class="boutonRose" type="button" onclick="insertTag('<div class=\'paragraphe\'>\n','\n</div>','textareaCode')">Para</button>
-        		<button title="Paragraphe" class="boutonV" type="button" onclick="insertTag('<span class=\'pause\'>','</span>','textareaCode')">Pause</button>
-        		
+        		<button title="Texte qui apparaît au clic" class="boutonV" type="button" onclick="insertTag('<span class=\'pause\'>','</span>','textareaCode')">Pause</button>
+        		<button title="Partie numérotée" class="boutonRose" type="button" onclick="insertTag('<ol>\n','\n</ol>','textareaCode')">ol</button>
+        		<button title="Puce numérotée" class="boutonRose" type="button" onclick="insertTag('<li>\n','\n</li>','textareaCode')">li</button>
+        		<button title="Correction" class="boutonR" type="button" onclick="insertTag('<div class=\'corr\'>\n','\n</div>','textareaCode')">Cor</button>
         		
         		<input type="text" class="filename" id="html-filename" placeholder="Nom de fichier" size="6"/></label>
         		<button title="Sauvegarder" class="boutonBlanc" onclick="save()">Save</button>
@@ -539,7 +513,6 @@ function save() {
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
-
 
 
 <script type="text/javascript"
@@ -597,6 +570,11 @@ var cont = $(this).html();
 $(this).html('');
 $(this).prepend("<div id='trou_"+i+"' class='trou'>"+ cont +"</div>");
 });
+$(".corr").each(function(i){
+var cont = $(this).html();
+$(this).html('');
+$(this).prepend("<button onclick='corrige("+i+")'>Correction</button><div id='correction_"+i+"' class='correction'>"+ cont +"<button style='display:block;' onclick='decorrige("+i+")'>&#10005;</button></div>");
+});
 }
 );
 
@@ -611,6 +589,15 @@ function avance() {
 	document.getElementById(nom).style.visibility = "visible";
 	trou++;
 	}
+function corrige(n) {
+	
+	var nom = "correction_"+n;
+	document.getElementById(nom).style.display = "block";
+}
+function decorrige(n) {
+	var nom = "correction_"+n;
+	document.getElementById(nom).style.display = "none";
+}
 </script>
 <style type="text/css">
 @page{
@@ -635,6 +622,7 @@ body{}
 .croissante{padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/croissante.png");background-repeat: no-repeat;background-size: contain;background-position: center center;width: 30px;}
 .decroissante{padding: 10px;text-align: center;background-image: url("http://sarmate.free.fr/mathpad_doc/img/decroissante.png");background-repeat: no-repeat;background-size: contain;background-position: center center;width: 30px;}
 .trou{visibility: hidden;display: inline-block;}
+.correction{display: none;}
 </style>  
 </head>
 <body onload="va_en_bas();">
@@ -912,10 +900,7 @@ body{}
 <!-- fin de presse papier-->
 
 
-<!-- Début Save -->
 
-
-<!-- Fin de Save -->
 
 
 <!-- TODO LIST
@@ -930,6 +915,8 @@ Manuel...
 Numérotation de questions
 
 Tableau de variation
+
+
 
 -->
 
