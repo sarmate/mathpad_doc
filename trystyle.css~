@@ -235,7 +235,7 @@ body {
 	color: #707070;
 	font-weight: bolder;
 	position: fixed;
-	top: 0px;
+	bottom: 0px;
 	left: 50%;
 	z-index: 300;
 	cursor:pointer;
@@ -298,9 +298,9 @@ body {
 
 #tabVar{
 	position: fixed;
-	top: 100px;
-	left: 100px;
-	right: 100px;
+	top: 50px;
+	left: 50px;
+	right: 50px;
 	bottom: 300px;
 	border: solid 3px black;
 	border-radius: 20px;
@@ -308,6 +308,8 @@ body {
 	visibility: hidden;
 	text-align: center;
 	padding: 50px;
+	overflow: auto;
+	background-color: #ffffff;
 	}
 
 .tabS{
@@ -342,6 +344,7 @@ body {
 	padding: 2px;
 	border: solid 1px black;
 	background-color: #ffffff;
+	cursor:pointer;
 	}
 #graphePlus{
 	position: fixed;

@@ -102,6 +102,21 @@ function annuleVar() {
 	document.getElementById("tabVar").style.visibility = "hidden";
 }
 
+function s11() {
+	
+	
+	var textTab = '<table class=\'var\'>\n\t<tr>\n\t\t<td class=\'droite\'>$x$</td>\n\t\t<td class=\'bas\'>$-\\infty$</td>\n\t\t';
+	textTab = textTab + '<td class=\'bas\'></td>\n\t\t<td class=\'bas\'></td>\n\t\t<td class=\'bas\'></td>\n\t\t';
+	textTab = textTab + '<td class=\'bas\'>$+\\infty$</td>\n\t</tr>\n\t<tr>\n\t\t<td class=\'droite\'>$f(x)$</td>\n\t\t<td class=\'bas\'></td>\n\t\t<td class=\'bas\'></td>\n\t\t';
+	textTab = textTab + '<td class=\'bas\'>+</td>\n\t\t<td class=\'bas\'></td>\n\t\t<td class=\'bas\'></td>\n\t</tr>\n</table>';
+	
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
+
 function s12() {
 	
 	
@@ -170,6 +185,26 @@ function v11() {
 	
 	document.getElementById("tabVar").style.visibility = "hidden";
 }
+
+
+function v11s() {
+	
+	
+	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-\\infty$</td>\n\t\n\t<td class="bas"></td>';
+	textTab = textTab+ '\n\t\n\t<td class="bas">$+\\infty$</td>\n';
+	textTab = textTab + '</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t\n\t<td></td>\n\t<td></td>\n\t<td>$+\\infty$</td>\n\t';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class="droite_seule">$f(x)$</td>\n\t\n\t<td></td>\n\t<td class="croissante"></td>\n\t<td></td>\n\t';
+	textTab = textTab + '\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t\n\t<td>$-\\infty$</td>\n\t<td></td>';
+	textTab = textTab + '\n\t<td></td>\n\t\n</tr>\n</table>';
+	
+	
+
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+}
+
 
 
 
@@ -470,6 +505,7 @@ function save() {
 		        <button title="Afficher un tableau" class="boutonBlanc" type="button" onclick="insertTag('<table class=\'tableau\'>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>','','textareaCode')">&#9638; </button>
         		  <button title="Tracer de courbe" class="boutonBlanc" type="button" onclick="afficheGraphe();"><img src="img/courbe.png"  style="height:15px;width:18px;"/></button>
 		        <button title="Tableaux de variations" class="boutonBlanc" type="button" onclick="zoneTabVar();">&#8599;&#8600;</button>
+		        <a href="svg-edit-2.4/svg-editor.html" target="_blank"><button title="SVG Edit" class="boutonB" type="button">SVG</button></a>
         			<!--
         			<button title="Afficher une image" class="boutonBlanc" type="button" onclick="insertTag('<img src=\'img_save/.png\' style=\'\'/>','','textareaCode')"><img src="img/cadre.png"  style="height:14px;width:18px;"/></button>
         			<button title="Dessiner" class="boutonJaune" type="button" onclick="zonePaint();">&#10000;</button>
@@ -590,7 +626,7 @@ function avance() {
 	trou++;
 	}
 function corrige(n) {
-	alert(n);
+	
 	var nom = "correction_"+n;
 	document.getElementById(nom).style.display = "block";
 }
@@ -701,55 +737,601 @@ body{}
 </div>
 
 
-
+<!-- TAB VAR ------------------------------------------------------>
 <div id="tabVar">
+
+<button class="boutonGris" onclick="annuleVar();" style="margin-bottom:20px;">Annuler</button>
 
 <table style="text-align:center;margin:auto;margin-bottom:50px;">
 <tr>
-<td>
-<button class="boutonBlanc" onclick="s12();">Signe 1x2</button>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="s11();">Signe 1x1</button>
 </td>
-<td>
-<button class="boutonBlanc" onclick="s13();">Signe 1x3</button>
-</td>
-<td>
-<button class="boutonBlanc" onclick="s33();">Signe 3x3</button>
-</td>
-</tr>
-<tr>
-<td>
-<button class="boutonBlanc" onclick="v11();">Variation 1x1</button>
-</td>
-<td>
-<button class="boutonBlanc" onclick="v12();">Variation 1x2</button>
-</td>
-<td>
-<button class="boutonBlanc" onclick="v13();">Variation 1x3</button>
-</td>
-</tr>
-<tr>
-<td>
-<button class="boutonBlanc" onclick="v21();">Variation 2x1</button>
-</td>
-<td>
-<button class="boutonBlanc" onclick="v22();">Variation 2x2</button>
-</td>
-<td>
-<button class="boutonBlanc" onclick="v23();">Variation 2x3</button>
+<td class="caseBlanche">
+<table class='var'>
+	<tr>
+		<td class='droite'>$x$</td>
+		<td class='bas'>$-\infty$</td>
+		<td class='bas'></td>
+		<td class='bas'></td>
+		<td class='bas'></td>
+		<td class='bas'>$+\infty$</td>
+	</tr>
+	<tr>
+		<td class='droite'>$f(x)$</td>
+		<td class='bas'></td>
+		<td class='bas'></td>
+		<td class='bas'>+</td>
+		<td class='bas'></td>
+		<td class='bas'></td>
+	</tr>
+</table>
 </td>
 </tr>
 <tr>
-<td></td>
-<td>
-<button class="boutonBlanc" onclick="v43();">Variation 4x3</button>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="s12();">Signe 1x2</button>
 </td>
-<td></td>
+<td class="caseBlanche">
+
+<table class='var'>
+	<tr>
+		<td class='droite'>$x$</td>
+		<td class='bas'>$-\infty$</td>
+		<td class='bas'></td>
+		<td class='bas'>$0$</td>
+		<td class='bas'></td>
+		<td class='bas'>$+\infty$</td>
+	</tr>
+	<tr>
+		<td class='droite'>$f(x)$</td>
+		<td class='bas'></td>
+		<td class='bas'>-</td>
+		<td class='zero'></td>
+		<td class='bas'>+</td>
+		<td class='bas'></td>
+	</tr>
+</table>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="s13();">Signe 1x3</button>
+</td>
+<td class="caseBlanche">
+<table class='var'>
+<tr>
+	<td class='droite'>$x$</td>
+	<td class='bas'>$-\infty$</td>
+	<td class='bas'></td>
+	<td class='bas'>$-1$</td>
+	<td class='bas'></td>
+	<td class='bas'>$1$</td>
+	<td class='bas'></td>
+	<td class='bas'>$+\infty$</td>
+</tr>
+<tr>
+	<td class='droite'>$f(x)$</td>
+	<td class='bas'></td>
+	<td class='bas'>+</td>
+	<td class='zero'></td>
+	<td class='bas'>-</td>
+	<td class='zero'></td>
+	<td class='bas'>+</td>
+	<td class='bas'></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="s33();">Signe 3x3</button>
+</td>
+<td>
+<table class='var'>
+<tr>
+	<td class='droite'>$x$</td>
+	<td class='bas'>$-\infty$</td>
+	<td class='bas'></td>
+	<td class='bas'>$-1$</td>
+	<td class='bas'></td>
+	<td class='bas'>$1$</td>
+	<td class='bas'></td>
+	<td class='bas'>$+\infty$</td>
+</tr>
+<tr>
+	<td class='droite'>$f(x)$</td>
+	<td class='bas'></td>
+	<td class='bas'>+</td>
+	<td class='verticale'></td>
+	<td class='bas'>+</td>
+	<td class='zero'></td>
+	<td class='bas'>-</td>
+	<td class='bas'></td>
+</tr>
+<tr>
+	<td class='droite'>$g(x)$</td>
+	<td class='bas'></td>
+	<td class='bas'>-</td>
+	<td class='zero'></td>
+	<td class='bas'>+</td>
+	<td class='verticale'></td>
+	<td class='bas'>+</td>
+	<td class='bas'></td>
+</tr>
+<tr>
+	<td class='droite'>$h(x)$</td>
+	<td class='bas'></td>
+	<td class='bas'>-</td>
+	<td class='zero'></td>
+	<td class='bas'>+</td>
+	<td class='zero'></td>
+	<td class='bas'>-</td>
+	<td class='bas'></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v11s();">Variation 1x1</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-\infty$</td>
+	<td class="bas"></td>
+	<td class="bas">$+\infty$</td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	
+	<td></td>
+	<td></td>
+	<td>$+\infty$</td>
+	
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	
+	<td></td>
+	<td class="croissante"></td>
+	<td></td>
+	
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	
+	<td>$-\infty$</td>
+	<td></td>
+	<td></td>
+	
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v11();">Variation 1x1 (vi)</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-5$</td>
+	<td class="bas"></td>
+	<td class="bas"></td>
+	<td class="bas"></td>
+	<td class="bas">$5$</td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td class="interdit_sf"></td>
+	<td></td>
+	<td></td>
+	<td>$+\infty$</td>
+	<td class="interdit_sf"></td>
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	<td class="interdit_sf"></td>
+	<td></td>
+	<td class="croissante"></td>
+	<td></td>
+	<td class="interdit_sf"></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td class="interdit"></td>
+	<td>$-\infty$</td>
+	<td></td>
+	<td></td>
+	<td class="interdit"></td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v12();">Variation 1x2</button>
+</td>
+<td>
+<table class='var'>
+<tr>
+	<td class='droite'>$x$</td>
+	<td class='bas'>$-\infty$</td>
+	<td class='bas'></td>
+	<td class='bas'>$0$</td>
+	<td class='bas'></td>
+	<td class='bas'>$+\infty$</td>
+</tr>
+<tr>
+	<td class='droite_seule'></td>
+	<td>$+\infty$</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>$+\infty$</td>
+</tr>
+<tr>
+	<td class='droite_seule'>$f(x)$</td>
+	<td></td>
+	<td class='decroissante'></td>
+	<td></td>
+	<td class='croissante'></td>
+	<td></td>
+</tr>
+<tr>
+	<td class='droite_seule'></td>
+	<td></td>
+	<td></td>
+	<td>8</td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v13();">Variation 1x3</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-\infty$</td>
+	<td class="bas"></td>
+	<td class="bas">$-1$</td>
+	<td class="bas"></td>
+	<td class="bas">$1$</td>
+	<td class="bas"></td>
+	<td class="bas">$+\infty$</td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td>4</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>10</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	<td></td>
+	<td class="decroissante"></td>
+	<td class=""></td>
+	<td class="croissante"></td>
+	<td class=""></td>
+	<td class="decroissante"></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="droite"></td>
+	<td></td>
+	<td></td>
+	<td>5</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>-1</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v21();">Variation 2x1</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-5$</td>
+	<td class="bas"></td>
+	<td class="bas"></td>
+	<td class="bas"></td>
+	<td class="bas">$5$</td>
+</tr>
+<tr>
+	<td class="droite">$f'(x)$</td>
+	<td class="interdit"></td>
+	<td class="bas"></td>
+	<td class="bas">+</td>
+	<td class="bas"></td>
+	<td class="interdit"></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td class="interdit_sf"></td>
+	<td></td>
+	<td></td>
+	<td>$+\infty$</td>
+	<td class="interdit_sf"></td>
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	<td class="interdit_sf"></td>
+	<td></td>
+	<td class="croissante"></td>
+	<td></td>
+	<td class="interdit_sf"></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td class="interdit"></td>
+	<td>$-\infty$</td>
+	<td></td>
+	<td></td>
+	<td class="interdit"></td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v22();">Variation 2x2</button>
+</td>
+<td>
+<table class='var'>
+<tr>
+<td class='droite'>$x$</td>
+	<td class='bas'>$-\infty$</td>
+	<td class='bas'></td>
+	<td class='bas'>$0$</td>
+	<td class='bas'></td>
+	<td class='bas'>$+\infty$</td>
+</tr>
+<tr>
+	<td class='droite'>$f'(x)$</td>
+	<td class='bas'></td>
+	<td class='bas'>-</td>
+	<td class='zero'></td>
+	<td class='bas'>+</td>
+	<td class='bas'></td>
+</tr>
+<tr>
+	<td class='droite_seule'></td>
+	<td>$+\infty$</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>$+\infty$</td>
+</tr>
+<tr>
+	<td class='droite_seule'>$f(x)$</td>
+	<td></td>
+	<td class='decroissante'></td>
+	<td></td>
+	<td class='croissante'></td>
+	<td></td>
+</tr>
+<tr>
+	<td class='droite_seule'></td>
+	<td>
+	</td>
+	<td></td>
+	<td>8</td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v23();">Variation 2x3</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-\infty$</td>
+	<td class="bas"></td>
+	<td class="bas">$-1$</td>
+	<td class="bas"></td>
+	<td class="bas">$1$</td>
+	<td class="bas"></td>
+	<td class="bas">$+\infty$</td>
+</tr>
+<tr>
+	<td class="droite">$f'(x)$</td>
+	<td class="bas"></td>
+	<td class="bas">-</td>
+	<td class="zero"></td>
+	<td class="bas">+</td>
+	<td class="zero"></td>
+	<td class="bas">-</td>
+	<td class="bas"></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	<td></td>
+	<td class="decroissante"></td>
+	<td class=""></td>
+	<td class="croissante"></td>
+	<td class=""></td>
+	<td class="decroissante"></td>
+	<td></td>
+</tr>
+<tr>
+	<td class=""></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v43();">Variation 4x3</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-\infty$</td>
+	<td class="bas"></td>
+	<td class="bas">$-1$</td>
+	<td class="bas"></td>
+	<td class="bas">$1$</td>
+	<td class="bas"></td>
+	<td class="bas">$+\infty$</td>
+</tr>
+<tr>
+	<td class="droite">$f'(x)$</td>
+	<td class="bas"></td>
+	<td class="bas">+</td>
+	<td class="verticale"></td>
+	<td class="bas">+</td>
+	<td class="zero"></td>
+	<td class="bas">-</td>
+	<td class="bas"></td>
+</tr>
+<tr>
+	<td class="droite">$f'(x)$</td>
+	<td class="bas"></td>
+	<td class="bas">-</td>
+	<td class="zero"></td>
+	<td class="bas">+</td>
+	<td class="verticale"></td>
+	<td class="bas">+</td>
+	<td class="bas"></td>
+</tr>
+<tr>
+	<td class="droite">$f'(x)$</td>
+	<td class="bas"></td>
+	<td class="bas">-</td>
+	<td class="zero"></td>
+	<td class="bas">+</td>
+	<td class="zero"></td>
+	<td class="bas">-</td>
+	<td class="bas"></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	<td></td>
+	<td class="decroissante"></td>
+	<td class=""></td>
+	<td class="croissante"></td>
+	<td class=""></td>
+	<td class="decroissante"></td>
+	<td></td>
+</tr>
+<tr>
+	<td class=""></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+
+
+</td>
 </tr>
 
 </table>
 
-<button class="boutonBlanc" onclick="annuleVar();">Annuler</button>
+<button class="boutonGris" onclick="annuleVar();" style="margin-bottom:50px;">Annuler</button>
+
+<div style="margin-bottom:50px;">
+Valeur interdite : &lt;td class="interdit_sf">
+
+<br />
+
+Une barre avec zéro : &lt;td class="zero">
+
+<br />
+
+Une barre : &lt;td class="verticale">
+
+<br />
+
+Pour une case avec un trait horizontal : &lt;td class="bas">
+
+<br />
+
+Pour une case avec un trait vertical à droite : &lt;td class="droite_seule"> ou &lt;td class="droite">
+
+<br />
+
+Flèche vers le bas : &lt;td class="decroissante">
+
+<br />
+
+Flèche vers le bas : &lt;td class="croissante">
+
+
+
 </div>
+
+
+</div>
+<!-- TAB VAR ------------------------------------------------------>
+
 
 
 <!-- Symbols LaTeX ------------------------------------------------------>
@@ -905,14 +1487,16 @@ body{}
 
 <!-- TODO LIST
 
-Intégrer donwload.js au code de la page
+
 
 Bouton vers animations JSXGraph
 
 
 Manuel...
 
-Numérotation de questions
+
+
+
 
 Tableau de variation
 
