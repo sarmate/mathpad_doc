@@ -505,7 +505,8 @@ function save() {
 		        <button title="Afficher un tableau" class="boutonBlanc" type="button" onclick="insertTag('<table class=\'tableau\'>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>','','textareaCode')">&#9638; </button>
         		  <button title="Tracer de courbe" class="boutonBlanc" type="button" onclick="afficheGraphe();"><img src="img/courbe.png"  style="height:15px;width:18px;"/></button>
 		        <button title="Tableaux de variations" class="boutonBlanc" type="button" onclick="zoneTabVar();">&#8599;&#8600;</button>
-		        <a href="svg-edit-2.4/svg-editor.html" target="_blank"><button title="SVG Edit" class="boutonB" type="button">SVG</button></a>
+		        <a href="svg-edit-2.4/svg-editor.html" target="_blank"><button title="SVG Edit" class="boutonB" type="button" style="color:#ffffff;">SVG</button></a>
+		        <button title="Mathjax dans svg" class="boutonB" type="button" style="color:#ffffff" onclick="insertTag('<foreignObject x=\'\' y=\'\' width=\'\' height=\'\'>','</foreignObject>','textareaCode')">svgM</button>
         			<!--
         			<button title="Afficher une image" class="boutonBlanc" type="button" onclick="insertTag('<img src=\'img_save/.png\' style=\'\'/>','','textareaCode')"><img src="img/cadre.png"  style="height:14px;width:18px;"/></button>
         			<button title="Dessiner" class="boutonJaune" type="button" onclick="zonePaint();">&#10000;</button>
