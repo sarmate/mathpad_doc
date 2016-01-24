@@ -1,0 +1,226 @@
+body{
+	font-family: New Century Schoolbook, serif;	
+	font-size: medium;
+	visibility: visible;
+	}
+
+.trou{
+	visibility: hidden;
+	display: inline-block;
+	}
+
+.texte{
+	text-indent:0px;
+	padding-left: 10px;
+	}
+
+.multicols2{
+	margin: auto;
+	text-align: left;
+	width: 90%;
+	border-collapse: collapse;
+}
+.multicols2 td{
+	width: 50%;
+	}
+
+.multicols3{
+	margin: auto;
+	text-align: left;
+	width: 90%;
+}
+.multicols3 td{
+	width: 33%;
+	}
+
+.cacher{
+	z-index: 200;	
+	position: relative;
+	background-color: #e4acac;
+	color: #000000;
+	opacity: 0.1;
+	padding: 3px;
+	padding-top: 5px;
+	margin: 3px;
+	border-radius: 5px;
+	}
+
+.cacher2{
+	z-index: 200;	
+	position: relative;
+	background-color: #e4acac;
+	color: #000000;
+	opacity: 0.1;
+	padding: 3px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin: 3px;
+	border-radius: 5px;
+	}
+
+
+	
+#titre{
+	width: 100%;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	border-radius: 5px;
+	font-size: 20px;
+	padding-top: 10px;
+	margin-bottom: 50px;
+	background-color: #f0f0f0;
+	position: relative;
+	top:25px;
+	}
+	
+
+h1{
+	text-align: center;
+	font-style: italic;
+	font-weight: normal;
+	padding: 0px;
+	font-size: x-large;
+	}
+
+.num{
+	text-align: center;
+	font-weight: bold;
+	background-color: #000;
+	color: #fff;
+	border-radius:10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 50px;
+	}
+
+.paragraphe{
+	width: 100%;
+	font-size: x-large;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.sparagraphe{
+	width: 100%;
+	font-size: large;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+
+.para{
+	margin-left: 0px;
+	text-align: left;
+	font-weight: bold;
+	background-color: #000000;
+	color: #fff;
+	border-radius:10px;
+	padding-left: 20px;
+	}
+
+.sous_titre{
+	padding-left: 10px;
+	font-weight: bold;	
+	vertical-align:center;
+	}
+	
+#img_titre{
+	height:200px;
+	background-color: #000000;
+	border-radius: 10px;
+	border: solid 5px black;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-image: url("trigo.jpg");
+	background-position: center center;
+	background-size: cover;
+	}
+	
+.exemple{
+	width: 90%;
+	background: no-repeat linear-gradient(to right, gray, rgba(0,255,0,0));
+	background-size: 100% 10px;
+	background-position: center center;
+	margin-left: 10px;
+	padding-left: 20px;
+	}
+.ex{
+	background-color: #ffffff;	
+	padding-left: 5px;
+	padding-right: 5px;
+	}
+
+.tb_classique{
+	border-collapse: collapse;
+	border: solid black 1px;
+	margin: auto;
+	}
+.tb_classique td{
+	border: solid black 1px;
+	padding: 5px;
+	}
+h2{
+	color: #ffffff;
+	background-color: #000000;
+	border-radius: 5px;
+	padding: 3px;
+	padding-left: 25px;
+	}	
+
+
+.def{
+	border:1px solid black;
+	background-color: #f0f0f0;
+	padding: 10px;
+	margin-left: 15px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	}
+
+.titre_def{
+	color: #ffffff;
+	background-color: #000000;
+	border-radius: 5px;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	position: relative;
+	margin-left: -30px;
+	top: -15px;
+	}
+
+.ss_titre_def{
+	font-weight: bold;
+	font-style: italic;
+	}
+
+.exercice{
+	width: 100%;
+	border-top:10px solid #868686;	
+	}
+
+.exercice_titre{
+	position: relative;
+	top: -18px;
+	background-color: #ffffff;
+	margin-left: 25px;
+	padding-left: 5px;
+	padding-right: 15px;
+	}
+
+.centre{
+	width: 100%;
+	text-align: center;	
+	}
+	
+#a22{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 10px;	
+	}
+
+.tt{
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+	}

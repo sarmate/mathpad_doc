@@ -309,7 +309,7 @@ body {
 	text-align: center;
 	padding: 50px;
 	overflow: auto;
-	background-color: #ffffff;
+	background: rgba(255,255,255,0.8);
 	}
 
 .tabS{
@@ -336,7 +336,7 @@ body {
 	visibility: hidden;
 	border: solid 3px black;
 	border-radius: 20px;
-	background-color: #f0f0f0;
+	background: rgba(100,100,100,0.8);
 	text-align: center;
 	padding: 30px;
 	}
@@ -355,10 +355,25 @@ body {
 	visibility: hidden;
 	border: solid 3px black;
 	border-radius: 20px;
-	background-color: #f0f0f0;
+	background: rgba(100,100,100,0.8);
 	text-align: center;
 	padding: 30px;
 	}
+
+#svg{
+	position: fixed;
+	top: 30px;
+	left: 30px;
+	right: 30px;
+	bottom: 300px;
+	visibility: hidden;
+	border: solid 3px black;
+	border-radius: 20px;
+	background: rgba(100,100,100,0.8);
+	text-align: center;
+	padding: 30px;
+}
+
 #html-options{
 	border: solid 1px black;
 	}

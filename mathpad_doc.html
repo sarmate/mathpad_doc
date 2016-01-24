@@ -270,6 +270,28 @@ function v13() {
 
 function v21() {
 	
+	
+	var textTab = '<table class="var">\n<tr>\n';
+	textTab = textTab + '\t<td class=\"droite\">$x$</td>\n\t<td class=\"bas\">$-\\infty$</td>\n\t<td class=\"bas\"></td>\n\t<td class=\"bas\">$+\\infty$</td>\n';	
+	textTab = textTab + '</tr>\n';	
+	textTab = textTab + '<tr>\n\t<td class=\"droite\">$f\'(x)$</td>\n\t<td class=\"bas\"></td>\n\t<td class=\"bas\">+</td>\n\t<td class=\"bas\"></td>';
+	textTab = textTab + '\n</tr>\n';	
+	textTab = textTab + '<tr>\n\t<td class=\"droite_seule\"></td>\n\t<td></td>\n\t<td></td>\n\t<td>$\\infty$</td>\n\t</tr>\n';	
+	textTab = textTab + '<tr>\n\t<td class=\"droite_seule\">$f(x)$</td>\n\t<td></td>\n\t<td class=\"croissante\"></td>\n\t<td></td>\n\t</tr>\n';
+	textTab = textTab + '<tr>\n\t<td class=\"droite_seule\"></td>\n\t<td>$-\\infty$</td>\n\t<td></td>\n\t<td></td>\n';
+	textTab = textTab + '</tr>\n</table>';	
+	
+	insertTag(textTab,'','textareaCode');
+	
+	
+	document.getElementById("tabVar").style.visibility = "hidden";
+	
+}
+
+
+
+function v21vi() {
+	
 	var textTab = '<table class="var">\n<tr>\n\t<td class="droite">$x$</td>\n\t<td class="bas">$-5$</td>\n\t<td class="bas"></td>\n\t<td class="bas"></td>\n\t<td class="bas"></td>';
 	textTab = textTab + '\n\t<td class="bas">$5$</td>\n</tr>\n<tr>\n\t<td class="droite">$f\'(x)$</td>\n\t<td class="interdit"></td>\n\t<td class="bas"></td>\n\t<td class="bas">+</td>';
 	textTab = textTab + '\n\t<td class="bas"></td>\n\t<td class="interdit"></td>\n</tr>\n<tr>\n\t<td class="droite_seule"></td>\n\t<td class="interdit_sf"></td>\n\t<td></td>\n\t<td></td>';
@@ -449,6 +471,18 @@ function zoneEdit() {
 }
 
 
+var boule5 = true;
+
+function zoneSVG() {
+
+	if (boule5) {
+		document.getElementById("svg").style.visibility = "visible";
+		}
+	else {document.getElementById("svg").style.visibility = "hidden";
+	}	
+	boule5 = !boule5;
+}
+
 function save() {
 	
 	var contenu = $("#textareaCodeDebut").val();
@@ -505,8 +539,7 @@ function save() {
 		        <button title="Afficher un tableau" class="boutonBlanc" type="button" onclick="insertTag('<table class=\'tableau\'>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n<tr>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n\t<td></td>\n</tr>\n</table>','','textareaCode')">&#9638; </button>
         		  <button title="Tracer de courbe" class="boutonBlanc" type="button" onclick="afficheGraphe();"><img src="img/courbe.png"  style="height:15px;width:18px;"/></button>
 		        <button title="Tableaux de variations" class="boutonBlanc" type="button" onclick="zoneTabVar();">&#8599;&#8600;</button>
-		        <a href="svg-edit-2.4/svg-editor.html" target="_blank"><button title="SVG Edit" class="boutonB" type="button" style="color:#ffffff;">SVG</button></a>
-		        <button title="Mathjax dans svg" class="boutonB" type="button" style="color:#ffffff" onclick="insertTag('<foreignObject x=\'\' y=\'\' width=\'\' height=\'\'>','</foreignObject>','textareaCode')">svgM</button>
+		        <button title="SVG Edit" class="boutonB" type="button" style="color:#ffffff;" onclick="zoneSVG();">SVG</button>
         			<!--
         			<button title="Afficher une image" class="boutonBlanc" type="button" onclick="insertTag('<img src=\'img_save/.png\' style=\'\'/>','','textareaCode')"><img src="img/cadre.png"  style="height:14px;width:18px;"/></button>
         			<button title="Dessiner" class="boutonJaune" type="button" onclick="zonePaint();">&#10000;</button>
@@ -646,7 +679,6 @@ function decorrige(n) {
 	content: counter(page);
 	}
 @media print { .noprt {display:none} .pause{display:none} }
-body{}
 .tableau{border:solid 1px black;border-collapse: collapse;}
 .tableau td{border:solid 1px black;text-align: center;padding: 10px;}
 .var{border:solid 1px black;border-collapse: collapse;text-align: center;}.droite{border-right: solid 1px black;border-bottom: solid 1px black;padding: 10px;text-align: center;}
@@ -1048,9 +1080,55 @@ body{}
 </table>
 </td>
 </tr>
+
+
 <tr>
 <td style="text-align:right;">
 <button class="boutonGris" onclick="v21();">Variation 2x1</button>
+</td>
+<td>
+<table class="var">
+<tr>
+	<td class="droite">$x$</td>
+	<td class="bas">$-\infty$</td>
+	<td class="bas"></td>
+	<td class="bas">$+\infty$</td>
+</tr>
+<tr>
+	<td class="droite">$f'(x)$</td>
+	<td class="bas"></td>
+	<td class="bas">+</td>
+	<td class="bas"></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td></td>
+	<td></td>
+	<td>$+\infty$</td>
+</tr>
+<tr>
+	<td class="droite_seule">$f(x)$</td>
+	<td></td>
+	<td class="croissante"></td>
+	<td></td>
+</tr>
+<tr>
+	<td class="droite_seule"></td>
+	<td>$-\infty$</td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+
+
+
+<tr>
+<td style="text-align:right;">
+<button class="boutonGris" onclick="v21vi();">Variation 2x1 (vi)</button>
 </td>
 <td>
 <table class="var">
@@ -1475,6 +1553,44 @@ Flèche vers le bas : &lt;td class="croissante">
 	<button onclick="afficheGraphe()" class="boutonBlanc">Fermer</button>
 </div>
 <!-- Fin Graphe de fonctions -->
+
+<!-- Zone SVG ----------------------------------------------------------- -->
+
+<div id="svg">
+<table style="text-align:center;margin:auto;">
+<tr>
+<td>
+<a href="svg-edit-2.4/svg-editor.html" target="_blank">
+<button title="SVG Edit" class="boutonB" type="button" style="color:#ffffff;" onclick="zoneSVG();">Editeur SVG</button>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="content/svg-figures.html" target="_blank">
+<button title="Figures SVG" class="boutonB" type="button" style="color:#ffffff;" onclick="zoneSVG();">Code SVG de figures mathématiques</button>
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<button title="Mathjax dans svg" class="boutonB" type="button" style="color:#ffffff" onclick="insertTag('<foreignObject x=\'\' y=\'\' width=\'\' height=\'\'>','</foreignObject>','textareaCode')">Formules de mathématiques dans SVG</button>
+</td>
+</tr>
+
+<tr>
+<td style="padding-top:40px;">
+<button onclick="zoneSVG();">Fermer</button>
+</td>
+</tr>
+
+</table>
+</div>
+
+<!-- Fin Zone SVG ------------------------------------------------------- -->
+
+
 
 <!-- Presse papier -->
 
