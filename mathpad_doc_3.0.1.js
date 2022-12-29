@@ -17,11 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
-
-
 */
-
 
 
 
@@ -48,8 +44,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // - Visible / invisible : mettre les deux possibilités
 // - Améliorer les messages. En fonction du stylo afficher différents messages
 // - Tangente en dash
-
-
 
 
 
@@ -4109,8 +4103,6 @@ slider2.oninput = function() {
 
 
 
-
-
 function stampJSX() {
 	
 	if ( cStepJSX <= tabUndoJSX.length ) {
@@ -4145,24 +4137,7 @@ $("#redoJSX").click(function() {
 	 
 	 
 
-
-
-
-
-
 });
-
-
-	  
-  	
-   
-  	
-
-	
-	
-	
-
-
 
 
 
@@ -4633,7 +4608,9 @@ function(){
 	editor.foldCode(CodeMirror.Pos(2, 0));
 	editor.foldCode(CodeMirror.Pos(72, 0));
    
-	
+	editor.focus();
+	editor.setCursor({line: 65, ch: 2});
+		
 	var map1 = {"Ctrl-Space": function () { 
 		console.log("Shortcut !!")
 		submitTryit() }}
