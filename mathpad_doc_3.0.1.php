@@ -21,14 +21,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 !-->
 
 
-<?php
-$m = time().";";
-$fich=fopen("visites.txt","a");
-fwrite($fich,"$m");
-fclose($fich);
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -1805,35 +1797,6 @@ $( function() {
 
 
 
-
-
-
-
-
-
-
-
-<!-- TODO LIST
-
-
-
-
-
-Manuel...
-
-
-
-
-
--->
-
-
-
-<!--
-
-Pour la sauvegarde
-
--->
 
 
 <div id="mess_sauve">
